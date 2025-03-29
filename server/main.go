@@ -177,7 +177,7 @@ func (s *Server) sendPeerInfo(peerID string, targetPeerID string) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("%s:%d/connect", targetPeer.Endpoint.Host, targetPeer.Endpoint.Port), "application/json", bytes.NewBuffer(jsonData))
+	resp, err := http.Post(fmt.Sprintf("http://%s:%d/connect", targetPeer.Endpoint.Host, targetPeer.Endpoint.Port), "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
 		log.Printf("Error al enviar la información del par: %v", err)
 		return

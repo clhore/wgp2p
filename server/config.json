@@ -4,6 +4,7 @@
         "controlPort": 443,
         "privateKey": "gP69hmKxP01OXAikh/lD0tmNimDT+fLRCp0KkbxadWU=",
         "connectedPeers": {
-                "peerA": "peerB"
+                "peerA": "peerB",
+                "peerB": "peerA"
         }
 }

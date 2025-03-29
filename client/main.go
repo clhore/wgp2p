@@ -73,7 +73,7 @@ func registerWithServer(config Config) (Peer, error) {
 		return Peer{}, err
 	}
 
-	resp, err := http.Post(fmt.Sprintf("%s:%d/register", config.ServerAddr, config.ServerPort), "application/json", bytes.NewBuffer(jsonData))
+	resp, err := http.Post(fmt.Sprintf("http://%s:%d/register", config.ServerAddr, config.ServerPort), "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
 		return Peer{}, err
 	}
