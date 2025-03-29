@@ -1,0 +1,15 @@
+services:
+  PeerA:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wgclient:test
+    container_name: PeerA
+    ports:
+      - "51820:51820/udp"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    privileged: true

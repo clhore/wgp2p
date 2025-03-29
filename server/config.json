@@ -1,0 +1,9 @@
+{
+        "listenAddr": "0.0.0.0",
+        "listenPort": 51820,
+        "controlPort": 443,
+        "privateKey": "gP69hmKxP01OXAikh/lD0tmNimDT+fLRCp0KkbxadWU=",
+        "connectedPeers": {
+                "peerA": "peerB"
+        }
+}

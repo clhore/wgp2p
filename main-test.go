@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"wgp2p/client-peer/wgconf"
+
+	"github.com/clhore/wireguard-packages/wgconf"
 )
 
 func main() {
@@ -12,13 +13,17 @@ func main() {
 		return
 	}
 
-	wgAddress := wgconf.IPAddrAndMac{IpAddr: "10.0.0.254", MaskAddr: 24}
+	wgAddress := wgconf.IPAddrAndMac{IpAddr: "192.168.111.11", MaskAddr: 24}
 
 	wg := wgconf.NewWireGuardTrun(
-		wgconf.WithInterfaceName("wg0"), wgconf.WithInterfaceIp(wgAddress),
+		wgconf.WithInterfaceName("wg1"), wgconf.WithInterfaceIp(wgAddress), wgconf.WithListenPort(51822),
 		wgconf.WithPrivateKey("gP69hmKxP01OXAikh/lD0tmNimDT+fLRCp0KkbxadWU="),
 	)
-	wg.CreateInterface()
+	err := wg.CreateInterface()
+	if err != nil {
+		fmt.Println("Error creating interface:", err)
+		return
+	}
 
 	peerOne := wgconf.Peer{
 		PublicKey:  "7M2y7SRmOo0NUkJBRl7Ol0OitPrv1+/Y79rKu6FaQkw=",
@@ -44,6 +49,7 @@ func main() {
 	wg.AddPeer(peerOne)
 	wg.AddPeer(peerTwo)
 	wg.AddPeer(peerTree)
-	wg.RemovePeer(peerTwo.PublicKey)
 	wg.UpdateConfigInterfaceWgTrun()
+
+	wg.DeleteInterface()
 }

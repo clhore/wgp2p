@@ -1,0 +1,9 @@
+{
+        "serverAddr": "192.168.1.100",
+        "serverPort": 443,
+        "peerID": "peerA",
+        "token": "mi-token-secreto",
+        "privateKey": "7M2y7SRmOo0NUkJBRl7Ol0OitPrv1+/Y79rKu6FaQkw=",
+        "listenPort": 51820,
+        "allowedIPs": ["10.0.0.1/32"]
+}
