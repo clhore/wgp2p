@@ -99,7 +99,17 @@ func (s *Server) registerPeer(w http.ResponseWriter, r *http.Request) {
 	targetPeerID := s.Config.ConnectedPeers[peer.ID]
 	s.sendPeerInfo(peer.ID, targetPeerID)
 
-	w.WriteHeader(http.StatusOK)
+	// Enviar la información del servidor WireGuard al cliente.
+	serverInfo := struct {
+		ListenAddr string `json:"listenAddr"`
+		ListenPort int    `json:"listenPort"`
+	}{
+		ListenAddr: s.Config.ListenAddr,
+		ListenPort: s.Config.ListenPort,
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(serverInfo)
 }
 
 // Iniciar el servidor WireGuard UDP.
