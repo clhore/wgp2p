@@ -72,6 +72,7 @@ func loadConfig(filename string) Config {
 // Iniciar el servidor de control HTTP.
 func (s *Server) startControlServer() {
 	http.HandleFunc("/register", s.registerPeer)
+	log.Printf("Servidor de control iniciado en %s:%d", s.Config.ListenAddr, s.Config.ControlPort)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%d", s.Config.ListenAddr, s.Config.ControlPort), nil))
 }
 
